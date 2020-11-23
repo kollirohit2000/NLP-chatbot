@@ -2,6 +2,7 @@
 NLP is a way for computers to analyze, understand, and derive meaning from human language in a smart and useful way. By utilizing NLP, developers can organize and structure knowledge to perform tasks such as automatic summarization, translation, named entity recognition, relationship extraction, sentiment analysis, speech recognition, and topic segmentation.
 
 Reading in the corpus
+
 For our example,we will be using the Wikipedia page for chatbots as our corpus. Copy the contents from the page and place it in a text file named ‘chatbot.txt’. However, you can use any corpus of your choice.
 with open('intro_join.txt','r', encoding='utf8', errors ='ignore') as fin:raw = fin.read().lower()
 The main issue with text data is that it is all in text format (strings). However, the Machine learning algorithms need some sort of numerical feature vector in order to perform the task. So before we start with any NLP project we need to pre-process it to make it ideal for working. Basic text pre-processing includes:
@@ -18,6 +19,7 @@ Stemming: Stemming is the process of reducing inflected (or sometimes derived) w
 Lemmatization: A slight variant of stemming is lemmatization. The major difference between these is, that, stemming can often create non-existent words, whereas lemmas are actual words. So, your root stem, meaning the word you end up with, is not something you can just look up in a dictionary, but you can look up a lemma. Examples of Lemmatization are that “run” is a base form for words like “running” or “ran” or that the word “better” and “good” are in the same lemma so they are considered the same.
 
 Preprocessing
+
 We shall now define a function called LemTokens which will take as input the tokens and return normalized tokens.
 
 lemmer = nltk.stem.WordNetLemmatizer()
@@ -39,7 +41,9 @@ def greeting(sentence):
         if word.lower() in GREETING_INPUTS:
             return random.choice(GREETING_RESPONSES)
 Generating Response
+
 Bag of Words
+
 After the initial preprocessing phase, we need to transform text into a meaningful vector (or array) of numbers. The bag-of-words is a representation of text that describes the occurrence of words within a document. It involves two things:
 
 A vocabulary of known words.
@@ -53,6 +57,7 @@ The intuition behind the Bag of Words is that documents are similar if they have
 For example, if our dictionary contains the words {Learning, is, the, not, great}, and we want to vectorize the text “Learning is great”, we would have the following vector: (1, 1, 0, 0, 1).
 
 TF-IDF Approach
+
 A problem with the Bag of Words approach is that highly frequent words start to dominate in the document (e.g. larger score), but may not contain as much “informational content”. Also, it will give more weight to longer documents than shorter documents.
 
 One approach is to rescale the frequency of words by how often they appear in all documents so that the scores for frequent words like “the” that are also frequent across all documents are penalized. This approach to scoring is called Term Frequency-Inverse Document Frequency, or TF-IDF for short, where:
@@ -63,7 +68,9 @@ TF = (Number of times term t appears in a document)/(Number of terms in the docu
 Inverse Document Frequency: is a scoring of how rare the word is across documents.
 
 IDF = 1+log(N/n), where, N is the number of documents and n is the number of documents a term t has appeared in.
+
 Cosine Similarity
+
 Tf-idf weight is a weight often used in information retrieval and text mining. This weight is a statistical measure used to evaluate how important a word is to a document in a collection or corpus
 
 Cosine Similarity (d1, d2) =  Dot product(d1, d2) / ||d1|| * ||d2||
