@@ -5,6 +5,7 @@ Reading in the corpus
 
 For our example,we will be using the Wikipedia page for chatbots as our corpus. Copy the contents from the page and place it in a text file named ‘chatbot.txt’. However, you can use any corpus of your choice.
 with open('intro_join.txt','r', encoding='utf8', errors ='ignore') as fin:raw = fin.read().lower()
+
 The main issue with text data is that it is all in text format (strings). However, the Machine learning algorithms need some sort of numerical feature vector in order to perform the task. So before we start with any NLP project we need to pre-process it to make it ideal for working. Basic text pre-processing includes:
 
 Converting the entire text into uppercase or lowercase, so that the algorithm does not treat the same words in different cases as different
@@ -15,7 +16,9 @@ The NLTK data package includes a pre-trained Punkt tokenizer for English.
 
 Removing Noise i.e everything that isn’t in a standard number or letter.
 Removing the Stop words. Sometimes, some extremely common words which would appear to be of little value in helping select documents matching a user need are excluded from the vocabulary entirely. These words are called stop words
+
 Stemming: Stemming is the process of reducing inflected (or sometimes derived) words to their stem, base or root form — generally a written word form. Example if we were to stem the following words: “Stems”, “Stemming”, “Stemmed”, “and Stemtization”, the result would be a single word “stem”.
+
 Lemmatization: A slight variant of stemming is lemmatization. The major difference between these is, that, stemming can often create non-existent words, whereas lemmas are actual words. So, your root stem, meaning the word you end up with, is not something you can just look up in a dictionary, but you can look up a lemma. Examples of Lemmatization are that “run” is a base form for words like “running” or “ran” or that the word “better” and “good” are in the same lemma so they are considered the same.
 
 Preprocessing
@@ -30,7 +33,9 @@ remove_punct_dict = dict((ord(punct), None) for punct in string.punctuation)
 ​
 def LemNormalize(text):
     return LemTokens(nltk.word_tokenize(text.lower().translate(remove_punct_dict)))
+    
 Keyword matching
+
 Next, we shall define a function for a greeting by the bot i.e if a user’s input is a greeting, the bot shall return a greeting response.ELIZA uses a simple keyword matching for greetings. We will utilize the same concept here.
 
 GREETING_INPUTS = ("hello", "hi", "greetings", "sup", "what's up","hey",)
